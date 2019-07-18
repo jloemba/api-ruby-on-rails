@@ -18,8 +18,13 @@ Rails.application.routes.draw do
       resources :users
       resources :comment
 
+      #Users
       post '/users/authenticate' => 'users#authenticate'
       post '/users/register' => 'users#register'
+
+      #Articles
+      get '/articles/fetch' => 'articles#fetch'
+      
     end
   end
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

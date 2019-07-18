@@ -1,9 +1,15 @@
 class Api::V1::ArticlesController < ApplicationController
-  skip_before_action :verify_authenticity_token
-  before_action :set_article, only: [:show, :update, :destroy]
+  #skip_before_action :verify_authenticity_token
+  #before_action :set_article, only: [:show, :update, :destroy]
+
   # GET /articles
   def index
-    @articles = Article.all
+    #@articles = Article.all
+    #render json: @articles
+    @articles = []
+    Article.all.each do |a|
+      @articles.push({ title: a.title , content: a.content , slug: a.slug , image: a.image , user: Users.find(a.users_id) })
+    end
     render json: @articles
   end
 
@@ -31,10 +37,21 @@ class Api::V1::ArticlesController < ApplicationController
       render json: @article.errors, status: :unprocessable_entity
     end
   end
+
   # DELETE /articles/1
   def destroy
     @article.destroy
   end
+
+  # GET /articles/fetch
+  def fetch
+    @articles = []
+    Article.all.each do |a|
+      @articles.push({ title: a.title , content: a.content , slug: a.slug , image: a.image , user: Users.find_by_id(a.users_id) })
+    end
+    render json: Article.all
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_article
@@ -42,6 +59,6 @@ class Api::V1::ArticlesController < ApplicationController
   end
   # Only allow a trusted parameter “white list” through.
   def article_params
-    params.require(:article).permit(:title, :content, :slug ,:image)
+    params.require(:article).permit(:title, :content, :slug ,:image , :users_id , :created_at)
   end
 end
