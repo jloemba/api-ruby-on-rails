@@ -45,7 +45,7 @@ class Api::V1::UsersController < ApplicationController
       if @user.password == params[:password]
         #token = JsonWebToken.encode(user_id: @user.id)
         #time = Time.now + 24.hours.to_i 
-        render json: { name: @user.name , email: @user.email }, status: :ok
+        render json: @user , status: :ok
       else
         render json: { error: 'unauthorized' }, status: :unauthorized
       end
