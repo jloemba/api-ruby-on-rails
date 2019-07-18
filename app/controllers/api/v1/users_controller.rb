@@ -39,6 +39,18 @@ class Api::V1::UsersController < ApplicationController
       @user.destroy
     end
   
+     # POST /user/authenticate
+    def authenticate
+      @user = Users.find_by_email(params[:email])
+      if @user.password == params[:password]
+        #token = JsonWebToken.encode(user_id: @user.id)
+        #time = Time.now + 24.hours.to_i 
+        render json: { name: @user.name , email: @user.email }, status: :ok
+      else
+        render json: { error: 'unauthorized' }, status: :unauthorized
+      end
+    end
+
      private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -46,8 +58,9 @@ class Api::V1::UsersController < ApplicationController
     end
     # Only allow a trusted parameter “white list” through.
     def user_params
-      params.require(:user).permit(:lastname, :firstname, :mail, :token, :password)
+      params.require(:user).permit(:name, :email, :token, :password)
     end
   
-  
+    
+
    end
