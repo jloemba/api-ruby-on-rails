@@ -18,12 +18,17 @@ Rails.application.routes.draw do
       resources :users
       resources :comment
 
+      
       #Users
       post '/users/authenticate' => 'users#authenticate'
       post '/users/register' => 'users#register'
 
       #Articles
+      get '/articles/single' => 'articles#show'
       get '/articles/fetch' => 'articles#fetch'
+      post '/articles/create' => 'articles#create'
+      delete '/articles/delete' => 'articles#destroy'
+      put '/articles/udpate' => 'articles#update'
       
     end
   end
