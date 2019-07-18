@@ -1,10 +1,12 @@
-# README
+# API Ruby on rails
 
 
-Users:
-/users/authentificate
-/users/register
+# Installation
 
-Articles:
-/articles/ (les articles + l'auteur)
+bundle install
+rake db:migrate
+rake db:seed
+rails server -p 3001
+
+
 
