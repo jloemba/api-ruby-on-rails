@@ -24,9 +24,9 @@ Article.create(title: 'React \u0026 Redux : Les concepts',content: 'React est de
 Article.create(title: 'What is GraphQL?',content: 'GraphQL is one of the biggest buzzwords in software tech today. But what is it actually? Is it a query language like SQL? An execution engine like the JVM? A specification like XML? If you answered all of the above, you are correct! GraphQL is a query language syntax, a programming language-agnostic execution engine, and a continuously evolving specification. Let\'s dive into how GraphQL can be all of these things and get a glimpse of why people are excited about it.',slug: 'react-redux-concept',users_id:1,image:"/react.png")
 #Article.create(title: 'Hello world',content: 'lorem ipso',slug: 'hello-world')
 #Article.create(title: 'Hello world',content: 'lorem ipso',slug: 'hello-world')
-User.create(name:'joris',mail:'jorisloemba@mail.net',password: 'jorisl22')
-User.create(name:'louis',mail:'louisd@mail.net',password: 'ssbulouis')
-User.create(name:'albert',mail:'albert@mail.net',password: 'hackaton88')
+Users.create(name:'joris',email:'jorisloemba@mail.net',password: 'jorisl22')
+Users.create(name:'louis',email:'louisd@mail.net',password: 'ssbulouis')
+Users.create(name:'albert',email:'albert@mail.net',password: 'hackaton88')
 
 #User.create(firstname:'Daniel',lastname:'Kulaya',mail:'getout@gmail.com')
 #User.create(firstname:'Micheal',lastname:'B. Jordan',mail:'killmongera@gmail.com')
