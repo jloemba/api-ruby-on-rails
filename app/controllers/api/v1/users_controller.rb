@@ -51,6 +51,24 @@ class Api::V1::UsersController < ApplicationController
       end
     end
 
+    # POST /user/register
+    def register
+      if user_params[:email] != nil && user_params[:name] != nil && user_params[:password] != nil
+        render json: { error: 'all value are not filled' }, status: :unprocessable_entity
+        #Si tous les paramètres sont saisis , on peut soumettre la données
+        user_params[:token] = nil
+        @users = Users.new(user_params)
+        if @users.save
+          render json: @users, status: :created, location:        api_v1_user_url(@users)
+        else
+          render json: @users.errors, status: :unprocessable_entity
+        end
+      else
+        render json: { error: 'all value are not filled' }, status: :unprocessable_entity
+      end
+
+    end
+
      private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -58,7 +76,7 @@ class Api::V1::UsersController < ApplicationController
     end
     # Only allow a trusted parameter “white list” through.
     def user_params
-      params.require(:user).permit(:name, :email, :token, :password)
+      params.require(:user).permit(:name, :email , :password)
     end
   
     
