@@ -6,7 +6,11 @@
 bundle install
 rake db:migrate
 rake db:seed
-rails server -p 3001
+rails server -p 3002
+
+# Front-end
+
+Repo : https://github.com/AlbertKr/react-ruby
 
 
 
